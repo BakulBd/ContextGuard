@@ -20,7 +20,7 @@ jobs:
         # three risk engines, the event store, the NLP layer (generation,
         # grounding, querying), and the API's routing/auth/validation.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -49,7 +49,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build API image
         # Build-only: proves the Dockerfile stays correct as dependencies
         # change. Not pushed anywhere -- wire up a registry login + push
