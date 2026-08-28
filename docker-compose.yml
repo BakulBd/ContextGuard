@@ -1,0 +1,22 @@
+services:
+  contextguard-api:
+    build: .
+    image: contextguard-api:latest
+    restart: unless-stopped
+    # 127.0.0.1, not 0.0.0.0: keep this off the LAN by default even
+    # though the container itself binds 0.0.0.0 internally (normal
+    # Docker practice -- the host-side mapping is the real boundary).
+    # See deploy/README.md before widening this.
+    ports:
+      - "127.0.0.1:8000:8000"
+    devices:
+      # Linux Docker host only -- see the Dockerfile's note for macOS/Windows.
+      - "/dev/video0:/dev/video0"
+    group_add:
+      # The container's non-root user needs the host's `video` group to
+      # open /dev/video0. Find yours with: getent group video | cut -d: -f3
+      - "${VIDEO_GID:-44}"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data

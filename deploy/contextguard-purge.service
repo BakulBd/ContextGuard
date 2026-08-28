@@ -1,0 +1,9 @@
+[Unit]
+Description=ContextGuard event-retention purge (one-shot)
+
+[Service]
+Type=oneshot
+User=YOUR_USERNAME
+WorkingDirectory=/path/to/ContextGuard
+EnvironmentFile=-/path/to/ContextGuard/.env
+ExecStart=/path/to/ContextGuard/.venv/bin/python tools/purge_old_events.py

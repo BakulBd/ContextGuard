@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# runtime data: event DB, zone definitions, trained risk models, enrollment
+# embeddings -- all machine/session-specific, none of it belongs in git.
+data/
+!data/.gitkeep
+
+# per-deployment instance config (camera index, thresholds, etc.) --
+# auto-created with sane defaults on first run by contextguard/config.py;
+# treat it like a runtime artifact, not something to version.
+config.yaml
+config.local.yaml
+.env
+
+# Ultralytics downloads model weights (yolov8n.pt) into the working dir.
+*.pt
+
+.DS_Store

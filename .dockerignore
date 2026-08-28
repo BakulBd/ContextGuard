@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.git/
+.github/
+data/
+dashboard/
+scripts/
+tests/
+tools/
+deploy/
+*.md
+.env
+.env.example
+docker-compose.yml

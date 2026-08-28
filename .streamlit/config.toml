@@ -1,0 +1,17 @@
+# Project-level Streamlit defaults. Loaded automatically by `streamlit
+# run` for anyone running it from this directory -- no flags to
+# remember, no accidental LAN exposure.
+#
+# Streamlit's own default is server.address unset, which means "listen
+# on all interfaces" (0.0.0.0) -- verified against a running instance
+# while building this project, not assumed. For a page showing a live
+# security-camera feed, that default is actively dangerous. Pin it to
+# loopback here; deploy/README.md documents how to deliberately widen
+# this (reverse proxy, not a raw port).
+
+[server]
+address = "127.0.0.1"
+headless = true
+
+[browser]
+gatherUsageStats = false

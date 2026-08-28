@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.14"]
+        # Camera-touching code (contextguard/camera.py's cv2.VideoCapture,
+        # scripts/run_headless.py) is exercised by hand on real hardware --
+        # see the main README -- not here. Everything else, including the
+        # full REST API (tests/test_api.py, via a fake injected service --
+        # see api/state.py's set_service seam), runs in CI with no webcam
+        # or GPU: geometry, zones, the context/duration state machine, all
+        # three risk engines, the event store, the NLP layer (generation,
+        # grounding, querying), and the API's routing/auth/validation.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install CPU-only torch
+        # Same reasoning as the README's Setup section: the default PyPI
+        # torch wheel drags in several GB of CUDA libraries a CI runner
+        # (and this CPU-only project) will never use.
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install
+        run: pip install -e ".[dev,api]"
+
+      - name: Test
+        run: pytest -v
+
+      - name: Import-check the dashboard (catches syntax/import errors CI's headless env can't otherwise reach)
+        run: python -c "import ast; ast.parse(open('dashboard/app.py').read())"
+
+      - name: Import-check tools and the API app
+        run: python -c "import tools.benchmark_detector, tools.train_risk_model, tools.purge_old_events, tools.compare_narrators, api.main"
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build API image
+        # Build-only: proves the Dockerfile stays correct as dependencies
+        # change. Not pushed anywhere -- wire up a registry login + push
+        # step here once this repo has one.
+        run: docker build -t contextguard-api:ci .

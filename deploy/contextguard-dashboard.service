@@ -1,0 +1,25 @@
+[Unit]
+Description=ContextGuard security monitoring dashboard
+After=network.target sound.target
+# If systemd starts this before your graphical login session exists,
+# desktop notifications (contextguard/alerts.py -> notify-send) will
+# silently no-op -- an acceptable degradation (every alert still hits
+# the console/file log), not a reason to block startup on a session.
+
+[Service]
+Type=simple
+
+# --- EDIT THESE FOR YOUR MACHINE (see deploy/README.md) ---
+User=YOUR_USERNAME
+WorkingDirectory=/path/to/ContextGuard
+EnvironmentFile=-/path/to/ContextGuard/.env
+ExecStart=/path/to/ContextGuard/.venv/bin/streamlit run dashboard/app.py --server.address=127.0.0.1 --server.port=8501 --server.headless=true --browser.gatherUsageStats=false
+# ------------------------------------------------------------
+
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
