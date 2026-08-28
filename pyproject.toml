@@ -6,7 +6,39 @@ build-backend = "setuptools.build_meta"
 name = "contextguard"
 version = "0.1.0"
 description = "Privacy-preserving, context-aware intrusion reasoning and grounded natural-language security intelligence for a laptop webcam."
+readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Bakul Ahmed", email = "cyberbokul@gmail.com" }]
+keywords = [
+    "computer-vision", "object-detection", "object-tracking", "yolo", "bytetrack",
+    "person-detection", "person-tracking", "video-surveillance", "intrusion-detection",
+    "security-camera", "physical-security", "privacy", "privacy-preserving", "edge-ai",
+    "cpu-inference", "on-device", "offline", "loitering-detection", "anomaly-detection",
+    "context-aware", "risk-scoring", "explainable-ai", "grounded-generation",
+    "hallucination-detection", "natural-language-query", "llm", "small-language-model",
+    "streamlit", "fastapi", "prometheus", "webcam",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Multimedia :: Video :: Capture",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Security",
+]
 dependencies = [
     "opencv-python>=4.10",
     "ultralytics>=8.3",
@@ -37,6 +69,12 @@ api = ["fastapi>=0.110", "uvicorn[standard]>=0.30", "slowapi>=0.1.9", "prometheu
 # -- optional because it pulls in `transformers` and downloads a model on
 # first use; the default template narrator needs neither.
 localllm = ["transformers>=4.45", "accelerate>=0.30"]
+
+[project.urls]
+Homepage = "https://github.com/BakulBd/ContextGuard"
+Repository = "https://github.com/BakulBd/ContextGuard"
+Issues = "https://github.com/BakulBd/ContextGuard/issues"
+Changelog = "https://github.com/BakulBd/ContextGuard/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 include = ["contextguard*"]

@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+title: "ContextGuard: Privacy-Preserving, Context-Aware Intrusion Reasoning for a Laptop Webcam"
+message: "If you use this software, please cite it using these metadata."
+type: software
+authors:
+  - family-names: Ahmed
+    given-names: Bakul
+    email: cyberbokul@gmail.com
+repository-code: "https://github.com/BakulBd/ContextGuard"
+url: "https://github.com/BakulBd/ContextGuard"
+abstract: >-
+  ContextGuard is a CPU-only, privacy-preserving physical-security monitoring
+  pipeline for a single laptop webcam. It detects and tracks people with
+  YOLO26n and ByteTrack, reasons about user-defined zones and temporal
+  context (dwell time, loitering, repeat visits, after-hours activity),
+  scores each situation with a swappable and explainable risk engine
+  (hand-tuned rules, model-derived weights, or logistic regression) compared
+  against naive baselines, stores structured events in a local SQLite
+  database, and generates grounded natural-language narratives validated by a
+  hallucination checker. Anonymous tracking is the default; no cloud
+  inference is used in the default path. Human and machine interfaces are
+  provided via a Streamlit dashboard and an optional FastAPI REST service.
+keywords:
+  - computer vision
+  - object detection
+  - object tracking
+  - YOLO
+  - ByteTrack
+  - intrusion detection
+  - video surveillance
+  - privacy-preserving machine learning
+  - edge AI
+  - CPU inference
+  - anomaly detection
+  - context-aware computing
+  - explainable AI
+  - grounded text generation
+  - hallucination detection
+  - natural language query
+  - small language models
+license: MIT
+version: 0.1.0
+date-released: "2026-08-28"

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/BakulBd/ContextGuard/security/advisories/new
+    about: Report privately — do not open a public issue. See SECURITY.md.
+  - name: Question or discussion
+    url: https://github.com/BakulBd/ContextGuard/discussions
+    about: Usage questions, ideas, and "is this the right tool for…" belong here.

@@ -1,0 +1,86 @@
+name: Bug report
+description: Something in ContextGuard doesn't work as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please fill in as much as you can — camera/hardware
+        issues in particular are hard to reproduce without the details below.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: |
+        I ran `streamlit run dashboard/app.py`, pressed Start, and ...
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which surface
+      options:
+        - Streamlit dashboard
+        - REST API (uvicorn)
+        - REST API (Docker)
+        - scripts/run_headless.py
+        - tools/ script
+        - pytest / CI
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS and version
+      placeholder: "e.g. Ubuntu 24.04, macOS 14.5, Windows 11"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "python --version → e.g. 3.14.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install
+      options:
+        - "uv pip install -e ..."
+        - "pip install -e ..."
+        - "Docker / docker compose"
+    validations:
+      required: true
+  - type: input
+    id: camera
+    attributes:
+      label: Camera source
+      placeholder: "e.g. 0, 1, rtsp://..., synthetic"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Traceback and logs
+      description: Full traceback plus relevant lines from data/logs/contextguard.log. This is automatically formatted as code.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I'm on the latest `main` (or a tagged release) and checked existing issues.
+          required: true
+        - label: This is not a security vulnerability (those go to SECURITY.md, not here).
+          required: true
