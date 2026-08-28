@@ -14,7 +14,7 @@
 # doesn't need containerizing; this image is for the "run it on a
 # headless box, integrate it with something else" deployment shape.
 
-FROM python:3.12-slim AS base
+FROM python:3.14-slim AS base
 
 # OpenCV's runtime needs these even for headless/no-GUI use.
 RUN apt-get update && apt-get install -y --no-install-recommends \
